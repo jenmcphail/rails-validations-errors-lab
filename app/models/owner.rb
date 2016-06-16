@@ -8,7 +8,12 @@ class Owner < ActiveRecord::Base
 
   # removes leading 1 and the characters (, ), -, .
   def normalize_phone_number
-    # stretch
+  	if phone.present?
+      phone.gsub!(/[^x' '0-9]/, '')
+      if phone[0] == "1"
+        phone[0] = ''
+      end
+    end
   end
 
 end
